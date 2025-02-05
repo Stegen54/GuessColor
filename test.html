@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Guessing Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #colorBox {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            border: 2px solid #000;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .options button {
+            width: 50px;
+            height: 50px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .options button:hover {
+            transform: scale(1.1);
+        }
+        #gameStatus {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #newGameButton {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background: #007BFF;
+            color: white;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        #newGameButton:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Color Guessing Game</h1>
+        <p data-testid="gameInstructions">Guess the correct color!</p>
+        <div id="colorBox" data-testid="colorBox"></div>
+        <div id="colorOptions" class="options"></div>
+        <p id="gameStatus" data-testid="gameStatus"></p>
+        <p>Score: <span id="score" data-testid="score">0</span></p>
+        <button id="newGameButton" data-testid="newGameButton">New Game</button>
+    </div>
+    <script>
+        const colorBox = document.getElementById("colorBox");
+        const colorOptions = document.getElementById("colorOptions");
+        const gameStatus = document.getElementById("gameStatus");
+        const scoreDisplay = document.getElementById("score");
+        const newGameButton = document.getElementById("newGameButton");
+        
+        let colors = ["red", "blue", "green", "yellow", "purple", "orange"];
+        let targetColor = "";
+        let score = 0;
+        
+        function startGame() {
+            targetColor = colors[Math.floor(Math.random() * colors.length)];
+            colorBox.style.backgroundColor = targetColor;
+            colorOptions.innerHTML = "";
+            
+            let shuffledColors = [...colors].sort(() => Math.random() - 0.5);
+            shuffledColors.forEach(color => {
+                let button = document.createElement("button");
+                button.style.backgroundColor = color;
+                button.setAttribute("data-testid", "colorOption");
+                button.addEventListener("click", () => checkGuess(color));
+                colorOptions.appendChild(button);
+            });
+            
+            gameStatus.textContent = "";
+        }
+        
+        function checkGuess(color) {
+            if (color === targetColor) {
+                gameStatus.textContent = "Correct!";
+                gameStatus.style.color = "green";
+                score++;
+                scoreDisplay.textContent = score;
+            } else {
+                gameStatus.textContent = "Wrong! Try again.";
+                gameStatus.style.color = "red";
+            }
+        }
+        
+        newGameButton.addEventListener("click", startGame);
+        
+        startGame();
+    </script>
+</body>
+</html>
