@@ -1,31 +1,28 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Guessing Game</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Guessing Game</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="game-container">
-        <h1>Color Guessing Game</h1>
-        <p data-testid="gameInstructions">Can you guess the correct color? Click on the matching color below!</p>
-        
-        <div data-testid="colorBox" class="color-box"></div>
-        
-        <div class="color-options">
-            <div data-testid="colorOption" class="color-button"></div>
-            <div data-testid="colorOption" class="color-button"></div>
-            <div data-testid="colorOption" class="color-button"></div>
-            <div data-testid="colorOption" class="color-button"></div>
-            <div data-testid="colorOption" class="color-button"></div>
-            <div data-testid="colorOption" class="color-button"></div>
-        </div>
-
-        <p data-testid="gameStatus" class="game-status"></p>
-        <p>Score: <span data-testid="score">0</span></p>
-        <button data-testid="newGameButton" class="new-game-btn">New Game</button>
+  <div class="container">
+    <h1>🎨 Color Guessing Game</h1>
+    <div class="color-box" data-testid="colorBox"></div>
+    <p class="instructions" data-testid="gameInstructions">Guess the correct color!</p>
+    <div class="color-options">
+      
     </div>
-    <script src="script.js"></script>
+    <p class="status" data-testid="gameStatus"></p>
+    <p class="score">Score: <span data-testid="score">0</span></p>
+    <button class="new-game-btn" data-testid="newGameButton">New Game</button>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
